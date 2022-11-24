@@ -1,0 +1,68 @@
+{
+    "name": "williamgall/lambase",
+    "description": "Database abstraction layer, Controller abstraction layer and many other helpful tools",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "laminas",
+        "lambase"
+    ],
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-db/",
+        "issues": "https://github.com/laminas/laminas-db/issues",
+        "source": "https://github.com/laminas/laminas-db",
+        "rss": "https://github.com/laminas/laminas-db/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0.99"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "laminas": {
+            "component": "Laminas\\Db",
+            "config-provider": "Laminas\\Db\\ConfigProvider"
+        }
+    },
+    "require": {
+        "php": "~8.0.0 || ~8.1.0|| ~8.2.0",
+        "laminas/db": "2.1.6",
+        "laminas/mail": "2.2.0",
+        "laminas/config": "3.8.0"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "williamgall\\lambase\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\Db\\": "test/unit/",
+            "LaminasIntegrationTest\\Db\\": "test/integration/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always --testsuite \"unit test\"",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "test-integration": "phpunit --colors=always --testsuite \"integration test\"",
+        "upload-coverage": "coveralls -v"
+    },
+    "conflict": {
+    }
+}
