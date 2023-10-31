@@ -33,11 +33,11 @@ class BaseModel
     public function getConfig()
     {
         // always use local.php if it exists
-        if(!file_exists(__DIR__ . '/../../../../config/autoload/local.php'))
+        if(!file_exists(__DIR__ . './config/autoload/local.php'))
         {
-            return include __DIR__ . '/../../../../config/autoload/global.php';
+            return include './config/autoload/global.php';
         }
-        return include __DIR__ . '/../../../../config/autoload/local.php';
+        return include './config/autoload/local.php';
     }
 
     /**
@@ -573,10 +573,8 @@ class BaseModel
 
     public function getGlobalConfig()
     {
-        $path = __DIR__."/../../../..";
-
-        $config = new Config(include($path."/config/autoload/global.php"),TRUE);
-        $configlocal = new Config(include( $path."/config/autoload/local.php"));
+        $config = new Config(include("./config/autoload/global.php"),TRUE);
+        $configlocal = new Config(include("./config/autoload/local.php"));
         $config->merge($configlocal);
         $config->setReadOnly();
         return $config;
