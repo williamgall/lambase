@@ -32,9 +32,8 @@
     },
     "require": {
         "php": "~8.0.0 || ~8.1.0|| ~8.2.0",
-        "laminas/db": "2.1.6",
-        "laminas/mail": "2.2.0",
-        "laminas/config": "3.8.0"
+        "laminas/db": "^2.1.6",
+        "laminas/mail": "^2.2.0",
     },
     "require-dev": {
     },
