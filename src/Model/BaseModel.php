@@ -33,7 +33,7 @@ class BaseModel
     public function getConfig()
     {
         // always use local.php if it exists
-        if(!file_exists(__DIR__ . './config/autoload/local.php'))
+        if(!file_exists( './config/autoload/local.php'))
         {
             return include './config/autoload/global.php';
         }
