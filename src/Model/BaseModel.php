@@ -2,7 +2,6 @@
 
 namespace williamgall\lambase\Model;
 
-use Laminas\Config\Config;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Driver\StatementInterface;
 use Laminas\Db\Adapter\ParameterContainer;
@@ -32,6 +31,7 @@ class BaseModel
      */
     public function getConfig()
     {
+        return $this->getMergedConfig();
         // always use local.php if it exists
         if(!file_exists( './config/autoload/local.php'))
         {
@@ -47,7 +47,15 @@ class BaseModel
      */
     public function getLocalConfig()
     {
-        return include './config/autoload/local.php';
+        if (file_exists('./config/autoload/local.php'))
+        {
+            return include './config/autoload/local.php';
+        }
+        if (file_exists(__DIR__ . '/../../../../config/autoload/local.php'))
+        {
+            return include __DIR__ . '/../../../../config/autoload/local.php';
+        }
+        error_log("Can't find local.php config file");
     }
     public function getMergedConfig()
     {
@@ -62,8 +70,17 @@ class BaseModel
      */
     public function getGlobConfig()
     {
-        return include './config/autoload/global.php';
+        if (file_exists('./config/autoload/global.php'))
+        {
+            return include './config/autoload/global.php';
+        }
+        if (file_exists(__DIR__ . '/../../../../config/autoload/global.php'))
+        {
+            return include __DIR__ . '/../../../../config/autoload/global.php';
+        }
+        error_log("Can't find global.php config file");
     }
+
 
     public function __construct($params = [])
     {
@@ -573,11 +590,7 @@ class BaseModel
 
     public function getGlobalConfig()
     {
-        $config = new Config(include("./config/autoload/global.php"),TRUE);
-        $configlocal = new Config(include("./config/autoload/local.php"));
-        $config->merge($configlocal);
-        $config->setReadOnly();
-        return $config;
+        return $this->getMergedConfig();
     }
 
     /**
