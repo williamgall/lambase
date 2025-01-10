@@ -51,9 +51,9 @@ class BaseModel
         {
             return include './config/autoload/local.php';
         }
-        if (file_exists(__DIR__ . '/../../../../config/autoload/local.php'))
+        if (file_exists(__DIR__ . '/../../../../../config/autoload/local.php'))
         {
-            return include __DIR__ . '/../../../../config/autoload/local.php';
+            return include __DIR__ . '/../../../../../config/autoload/local.php';
         }
         error_log("Can't find local.php config file");
     }
@@ -74,9 +74,9 @@ class BaseModel
         {
             return include './config/autoload/global.php';
         }
-        if (file_exists(__DIR__ . '/../../../../config/autoload/global.php'))
+        if (file_exists(__DIR__ . '/../../../../../config/autoload/global.php'))
         {
-            return include __DIR__ . '/../../../../config/autoload/global.php';
+            return include __DIR__ . '/../../../../../config/autoload/global.php';
         }
         error_log("Can't find global.php config file");
     }
